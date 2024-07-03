@@ -39,10 +39,21 @@
                         echo "│";
                     }
                     else {
-                        echo " ";
+                        $printed = false;
+                        foreach ($this->entities as $position => $entity) {
+                            list($posX, $posY) = explode(',', $position);
+                            if ($posX == $j && $posY == $i) {
+                                echo $entity->model;
+                                $printed = true;
+                            }
+                        }
+                        if ($printed == false) {
+                            echo ' ';    
+                        }
                     }
                 }
             }
         }
+
     }
 ?>
