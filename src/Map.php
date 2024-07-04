@@ -30,13 +30,10 @@
                         echo "┘\n";
                     }
                     else if ($j == ($this->sizeX - 1)) {
-                        echo "│\n";
+                        echo "\n";
                     }
                     else if ($i == 0 || $i == ($this->sizeY - 1)) {
                         echo "━";
-                    }
-                    else if ($j == 0) {
-                        echo "│";
                     }
                     else {
                         $printed = false;
