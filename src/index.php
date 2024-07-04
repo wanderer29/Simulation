@@ -9,6 +9,21 @@
     $mapSizeX = 100;
     $mapSizeY = 20;
 
+    
+    //Поиск в ширину 
+    function breadthFirstSearch($entity1, $entity2, $map) {
+        $queue = [];
+        array_push($queue, $entity1);
+        while (!empty($queue)) {
+            $node = array_shift($queue);
+            if ($node == $entity2) {
+                return true;
+            }
+            array_push($queue, $node);
+            
+
+        }
+    }
     $map = new Map($mapSizeX, $mapSizeY);
 
     $tree1 = new Tree('🌳');
@@ -70,6 +85,8 @@
 
 
     $map->drawMap();
+
+
 
 
 ?>
