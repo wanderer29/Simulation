@@ -8,7 +8,7 @@
             $this->sizeX = $sizeX;
             $this->sizeY = $sizeY;
             $this->entities = [];
-        }
+        }   
 
         public function getEntites() {
             return $this->entities;
@@ -16,6 +16,7 @@
 
         public function addEntity(Entity $entity, int $x, int $y) {
             $this->entities["$x,$y"] = $entity;
+            $entity->coordinates->setCoordinates($x, $y);
         }
 
         public function drawMap() {
@@ -49,7 +50,7 @@
                             }
                         }
                         if ($printed == false) {
-                            echo ' ';    
+                            echo "‥";    
                         }
                     }
                 }

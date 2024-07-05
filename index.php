@@ -1,30 +1,19 @@
 <?php
 
-    require 'Entity.php';
-    require 'Map.php';
-    require 'Tree.php';
-    require 'Rock.php';
-    require 'Grass.php';
+    require 'src/Entity.php';
+    require 'src/Map.php';
+    require 'src/Tree.php';
+    require 'src/Rock.php';
+    require 'src/Grass.php';
+    require 'src/Herbivore.php';
+    require 'src/Predator.php';
+    require 'src/PathFinder.php';
 
-    $mapSizeX = 100;
-    $mapSizeY = 20;
+    const MAP_SIZE_X = 100;
+    const MAP_SIZE_Y = 20;
 
     
-    //Поиск в ширину 
-    function breadthFirstSearch($entity1, $entity2, $map) {
-        $queue = [];
-        array_push($queue, $entity1);
-        while (!empty($queue)) {
-            $node = array_shift($queue);
-            if ($node == $entity2) {
-                return true;
-            }
-            array_push($queue, $node);
-            
-
-        }
-    }
-    $map = new Map($mapSizeX, $mapSizeY);
+    $map = new Map(MAP_SIZE_X, MAP_SIZE_Y);
 
     $tree1 = new Tree('🌳');
     $tree2 = new Tree('🌳');
@@ -53,6 +42,12 @@
     $grass8 = new Grass('🌱');
     $grass9 = new Grass('🌱');
     $grass10 = new Grass('🌱');
+
+    $herbivore1 = new Herbivore('🐇', 2, 10);
+
+    $predator1 = new Predator('🐺', 1, 15, 5);
+
+
 
     
     $map->addEntity($tree1, 10, 15);
@@ -83,10 +78,14 @@
     $map->addEntity($grass9, 60, 18);
     $map->addEntity($grass10, 55, 2);
 
+    $map->addEntity($herbivore1, 33, 15);
+
+    $map->addEntity($predator1, 20, 2);
 
     $map->drawMap();
 
-
+    $pathFinder = new PathFinder($map, $herbivore1, "Grass");
+    echo implode($pathFinder->findTarget()->coordinates->getCoordinates());
 
 
 ?>
