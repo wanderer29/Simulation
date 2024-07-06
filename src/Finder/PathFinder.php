@@ -33,5 +33,11 @@
             }
             return $nearestTarget;
         }
+
+        public function makeMove() {
+            $target = $this->findTarget();
+            
+
+        }
     }
 ?>

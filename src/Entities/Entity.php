@@ -1,5 +1,6 @@
 <?php
-    require 'Coordinates.php';
+    require __DIR__ . '/../Coordinates.php';
+
     abstract class Entity {
         protected $model;
         public $coordinates; 

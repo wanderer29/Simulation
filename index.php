@@ -1,12 +1,12 @@
 <?php
 
-    require 'src/Entity.php';
-    require 'src/Map.php';
-    require 'src/Tree.php';
-    require 'src/Rock.php';
-    require 'src/Grass.php';
-    require 'src/Herbivore.php';
-    require 'src/Predator.php';
+    require 'src/Entities/Entity.php';
+    require 'src/Entities/Map.php';
+    require 'src/Entities/Tree.php';
+    require 'src/Entities/Rock.php';
+    require 'src/Entities/Grass.php';
+    require 'src/Entities/Herbivore.php';
+    require 'src/Entities/Predator.php';
     require 'src/PathFinder.php';
 
     const MAP_SIZE_X = 100;
@@ -85,7 +85,6 @@
     $map->drawMap();
 
     $pathFinder = new PathFinder($map, $herbivore1, "Grass");
-    echo implode($pathFinder->findTarget()->coordinates->getCoordinates());
 
 
 ?>
