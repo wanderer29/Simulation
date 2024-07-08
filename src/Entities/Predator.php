@@ -2,8 +2,8 @@
     class Predator extends Creature {
         protected $damage;
         
-        public function __construct($model, $speed, $hp, $damage) {
-            parent::__construct($model, $speed, $hp);
+        public function __construct($model, Coordinates $coordinates, $speed, $hp, $damage) {
+            parent::__construct($model, $coordinates, $speed, $hp);
             $this->damage = $damage;
         }
 
@@ -13,6 +13,10 @@
 
         public function attack($damage) {
         
+        }
+
+        public function isSquareAvailableForMove($newCoordinates, Map $map): bool {
+            return ($map->isPlaceEmpty($newCoordinates)) || (get_class($map->getEntity($newCoordinates)) == "Herbivore");
         }
     }
 ?>
