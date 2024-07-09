@@ -26,7 +26,7 @@
     //     echo "\n";
     // }
 
-    $pathOfNodes = $pathFinder->findPath($map->getEntity(new Coordinates(33,15)), "Grass");
+    $pathOfNodes = $pathFinder->findPath($map->graph->getNode(new Coordinates(33,15)), "Grass"); //Node
     foreach ($pathOfNodes as $node) {
         echo $node->coordinates->toString();
         echo "\n";

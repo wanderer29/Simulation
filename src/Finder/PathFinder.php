@@ -6,36 +6,34 @@
             $this->map = $map;
         }
 
-        // public function findPath(Creature $creatrue, string $target) { Исправить
-        //     $visited = [];
-        //     $queue = new SplQueue();
-        //     $startCords = $creatrue->coordinates;
+        public function findPath(Node $startNode, string $target) { 
+            $visited = []; 
+            $queue = new SplQueue();
 
-        //     $queue->enqueue([$startCords]);
-        //     $visited[$startCords->toString()] = true;
+            $queue->enqueue([$startNode]); //Queue<Node>
+            $visited[$startNode->coordinates->toString()] = true; //Visited<"coordinatesAsStr", bool>
 
-        //     while ($queue->isEmpty() == false) {
-        //         $currentPath = $queue->dequeue();
-        //         $currentNode = end($currentPath);
+            while ($queue->isEmpty() == false) { 
+                $currentPath = $queue->dequeue(); //$currentPath = Array<Node>
+                $currentNode = end($currentPath); //$currentNode = Node
 
-        //     // if ($currentNode->coordinates != null) {
-        //     //     if (get_class($this->map->getEntity($currentNode->coordinates)) == $target) {
-        //     //         return $currentPath; //Вернет массив из Node
-        //     //     }
-        //     // }
-
+                if ($currentNode->entity != null) { 
+                    if (get_class($this->map->getEntity($currentNode->coordinates)) == $target) {
+                        return $currentPath; //Вернет массив из Node
+                    }
+                }
             
-        //         foreach($currentNode->neighbors as $neighbor) {
-        //             if (!isset($visited[$neighbor->coordinates->toString()])) { //Если еще не рассмотаривали по этим координатам
-        //                 $visited[$neighbor->coordinates->toString()] = true;
-        //                 $newPath = $currentPath; 
-        //                 $newPath[] = $neighbor;
-        //                 $queue->enqueue($newPath);
-        //             }
-        //         }   
-        //     }
-        //     return null;
-        // }
+                foreach($currentNode->neighbors as $neighbor) {
+                    if (!isset($visited[$neighbor->coordinates->toString()])) { //Если еще не рассмотаривали по этим координатам
+                        $visited[$neighbor->coordinates->toString()] = true;
+                        $newPath = $currentPath; 
+                        $newPath[] = $neighbor;
+                        $queue->enqueue($newPath);
+                    }
+                }   
+            }
+            return null;
+        }
 
 
 
