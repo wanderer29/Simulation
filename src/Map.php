@@ -6,16 +6,19 @@
     require 'Coordinates/Coordinates.php';
     require 'Entities/Herbivore.php';
     require 'Entities/Predator.php';
+    require 'Finder/Graph.php';
 
     class Map extends Entity {
         public $sizeX;
         public $sizeY;
         public $entities;
+        public $graph;
 
         public function __construct($sizeX, $sizeY) {
             $this->sizeX = $sizeX;
             $this->sizeY = $sizeY;
             $this->entities = [];
+            $this->graph = new Graph();
         }   
 
         public function getEntites() {
@@ -27,6 +30,10 @@
             $entity->setCoordinates($coordinates);
         }
 
+        public function removeEntity(Coordinates $coordinates) {
+            unset($this->entities[$coordinates->toString()]);
+        }
+
         public function isPlaceEmpty($coordinates) {
             return !array_key_exists($coordinates->toString(), $this->entities);
         }
@@ -35,7 +42,7 @@
             return $this->entities[$coordinates->toString()];
         }
 
-        public function setupStaticEntities() {
+        public function setupEntities() {
             //Добавление камней
             $this->addEntity(new Rock("🪨", new Coordinates(10,10)),new Coordinates(10,10));
             $this->addEntity(new Rock("🪨", new Coordinates(40,18)),new Coordinates(40,18));

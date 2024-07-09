@@ -2,42 +2,51 @@
     class PathFinder {
         private $map;
 
-        private $entity;
-        private $targetType;
-        private $target;
-        private $entityCords;
-        private $targetCords;
-
-        public function __construct($map, $entity, $targetType) {
+        public function __construct($map) {
             $this->map = $map;
-            $this->entity = $entity;
-            $this->targetType = $targetType;
-            $this->entityCords = $entity->coordinates->getCoordinates();
         }
 
-        public function calcDistance($start, $end) { //Нахождение чебышёвского расстояния
-            return max(abs($end->getCoordinates()[0] - $start[0]), abs($end->getCoordinates()[1] - $start[1]));
-        }
+        // public function findPath(Creature $creatrue, string $target) { Исправить
+        //     $visited = [];
+        //     $queue = new SplQueue();
+        //     $startCords = $creatrue->coordinates;
 
-        public function findTarget() {
-            $nearestTarget = "";
-            $nearestTargetDist = 10000;
-            foreach ($this->map->getEntites() as $cords => $target) {
-                if (get_class($target) == $this->targetType) {
-                    $distance = $this->calcDistance($this->entityCords, $target->coordinates);
-                    if ($distance < $nearestTargetDist) {
-                        $nearestTarget = $target;
-                        $nearestTargetDist = $distance;
-                    }
-                }
-            }
-            return $nearestTarget;
-        }
+        //     $queue->enqueue([$startCords]);
+        //     $visited[$startCords->toString()] = true;
 
-        public function makeMove() {
-            $target = $this->findTarget();
+        //     while ($queue->isEmpty() == false) {
+        //         $currentPath = $queue->dequeue();
+        //         $currentNode = end($currentPath);
+
+        //     // if ($currentNode->coordinates != null) {
+        //     //     if (get_class($this->map->getEntity($currentNode->coordinates)) == $target) {
+        //     //         return $currentPath; //Вернет массив из Node
+        //     //     }
+        //     // }
+
             
+        //         foreach($currentNode->neighbors as $neighbor) {
+        //             if (!isset($visited[$neighbor->coordinates->toString()])) { //Если еще не рассмотаривали по этим координатам
+        //                 $visited[$neighbor->coordinates->toString()] = true;
+        //                 $newPath = $currentPath; 
+        //                 $newPath[] = $neighbor;
+        //                 $queue->enqueue($newPath);
+        //             }
+        //         }   
+        //     }
+        //     return null;
+        // }
 
-        }
+
+
+
+
+
+        // public function calcDistance($start, $end) { //Нахождение чебышёвского расстояния
+        //     return max(abs($end->getCoordinates()[0] - $start[0]), abs($end->getCoordinates()[1] - $start[1]));
+        // }
+
+
+
     }
 ?>
