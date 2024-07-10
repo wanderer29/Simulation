@@ -8,7 +8,7 @@
             $this->hp = $hp;
         }
 
-        abstract public function makeMove();
+        abstract public function makeMove(Map $map, PathFinder $pathFinder);
 
         public function getAvailableMovePlaces(Map $map) : array { //Вернет массив Coordinates-ов
             $result = [];

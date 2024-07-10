@@ -32,6 +32,22 @@
         echo "\n";
     }
 
+    $map->getEntity(new Coordinates(20,2))->makeMove($map, $pathFinder);
+    $mapRender->mapRender($map);
+    $map->getEntity(new Coordinates(30,12))->makeMove($map, $pathFinder);
+    $mapRender->mapRender($map);
+    $map->getEntity(new Coordinates(30,12))->makeMove($map, $pathFinder);
+    $mapRender->mapRender($map);
+
+
+
+
+
+    // $map->getEntity(new Coordinates(33,13))->makeMove($map, $pathFinder);
+    // $mapRender->mapRender($map);
+
+
+
 
     // $herbivore1 = $map->getEntity(new Coordinates(33,15));
     

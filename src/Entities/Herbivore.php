@@ -6,15 +6,47 @@
             parent::__construct($model, $coordinates, $speed, $hp);
         }
         
-        public function makeMove() {
-            //?
-            
-            //Найти цель
-            //Найти путь
-            //Если цель в зоне доступных ходов: съесть
-            //  Иначе: сделать ход в сторону цели
+        public function makeMove(Map $map, PathFinder $pathFinder) {
 
+            if ($map->isThereAnEntity("Grass")) {
+                $moves = $pathFinder->findPath($map->graph->getNode($this->coordinates), "Grass");
+            }
+            else return;
             
+            //Доступна ли трава чтобы съесть
+            $coordinatesToMove = $this->getAvailableMovePlaces($map);
+            $canEat = false;
+            $grassCords = null;
+        
+            foreach($coordinatesToMove as $place) {
+                if ($map->isPlaceEmpty($place) == false) {
+                    if (get_class($map->getEntity($place)) == "Grass") {
+                        $canEat = true;
+                        $grassCords = $place;
+                    }
+                }
+            }
+
+            if ($canEat == true) {
+                //Удалить траву
+                $map->removeEntity($grassCords);
+                
+                //Удалить травоядного с текущей координаты
+                $map->removeEntity($this->coordinates);
+
+                //Переместить травоядного
+                $this->coordinates = $grassCords;
+                $map->addEntity($this, $grassCords);
+
+            }
+            else {
+                //Переместиться на свободную координату на пути
+                $map->removeEntity($this->coordinates);
+                $this->coordinates = $moves[$this->speed]->coordinates;
+                $map->addEntity($this, $this->coordinates);
+            }
+            //Обновить граф
+            $map->graph->setGraph($map);        
         }
 
         public function isSquareAvailableForMove($newCoordinates, Map $map): bool {

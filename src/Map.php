@@ -42,6 +42,15 @@
             return $this->entities[$coordinates->toString()];
         }
 
+        public function isThereAnEntity(string $type) {
+            foreach ($this->entities as $entity) {
+                if (get_class($entity) == $type) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public function setupEntities() {
             //Добавление камней
             $this->addEntity(new Rock("🪨", new Coordinates(10,10)),new Coordinates(10,10));
@@ -79,7 +88,7 @@
 
 
             //Добавление хищника
-            $this->addEntity(new Predator("🐺", new Coordinates(20,2), 1, 15, 5),new Coordinates(20,2));
+            $this->addEntity(new Predator("🐺", new Coordinates(20,2), 10, 15, 5),new Coordinates(20,2));
 
         }
     }

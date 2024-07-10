@@ -11,6 +11,10 @@
             return $this->x . ',' . $this->y;
         }
 
+        public function toCoordinates(string $coordinates) {
+            return explode(",", $coordinates);
+        }
+
         public function shift(CoordinatesShift $shift) {
             return new Coordinates($this->x + $shift->xShift, $this->y + $shift->yShift);
         }
