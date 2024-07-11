@@ -97,12 +97,13 @@
             $this->addEntity(new Grass("🌿", new Coordinates(60,18)),new Coordinates(60,18));
             $this->addEntity(new Grass("🌿", new Coordinates(55,2)),new Coordinates(55,2));
 
-            //Добавление травоядного
+            //Добавление травоядных
             $this->addEntity(new Herbivore("🐇", new Coordinates(33,15),2, 10),new Coordinates(33,15));
+            $this->addEntity(new Herbivore("🐇", new Coordinates(80,9),2, 10),new Coordinates(80,9));
 
-
-            //Добавление хищника
+            //Добавление хищников
             $this->addEntity(new Predator("🐺", new Coordinates(20,2), 2, 15, 5),new Coordinates(20,2));
+            $this->addEntity(new Predator("🐺", new Coordinates(90,2), 2, 15, 5),new Coordinates(90,2));
 
         }
     }

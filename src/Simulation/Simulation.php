@@ -37,12 +37,19 @@
         }
 
         public function printMovesCounter() {
+            foreach ($this->map->getEntites() as $entity) {
+                if ((get_class($entity) == "Herbivore" || get_class($entity) == "Predator")) {
+                    echo get_class($entity);
+                    echo $entity->hp;
+                    echo "\n";
+                }
+            }
             echo "\n";
             echo "Ход: $this->movesCounter \n";
         }
 
         public function stopSimulation() {
-            
+
         }
     }
 ?>

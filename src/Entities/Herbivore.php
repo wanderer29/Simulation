@@ -8,10 +8,12 @@
         
         public function makeMove(Map $map, PathFinder $pathFinder) {
 
-            if ($map->isThereAnEntity("Grass")) {
+            if ($map->isThereAnEntity("Grass") && $this->hp > 0) {
                 $moves = $pathFinder->findPath($map->graph->getNode($this->coordinates), "Grass");
             }
-            else return;
+            else {  
+                return;
+            };
             
             //Доступна ли трава чтобы съесть
             $coordinatesToMove = $this->getAvailableMovePlaces($map);

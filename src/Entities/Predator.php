@@ -23,6 +23,7 @@
                     if (get_class($map->getEntity($place)) == "Herbivore") {
                         $canEat = true;
                         $targetCords = $place;
+                        echo $targetCords->toString();
                     }
                 }
             }
@@ -32,13 +33,21 @@
                 if ($target->hp <= $this->damage) {
                     
                     //Удалить травоядное
-                    $map->removeEntity($targetCords);
+                    $map->getEntity($targetCords)->hp = 0;
+                    $map->removeEntity($target->coordinates);
+                    echo $target->coordinates->toString();
+                    echo "\n";
                     
                     //Удалить хищника с текущей координаты
                     $map->removeEntity($this->coordinates);
+                    echo $this->coordinates->toString();
+                    echo "\n";
+
                     //Переместить хищника
                     $this->coordinates = $targetCords;
                     $map->addEntity($this, $this->coordinates);
+                    echo $this->coordinates->toString();
+
                 }
                 else { // Отнимаем у травоядного hp
                     $target->hp -= $this->damage;

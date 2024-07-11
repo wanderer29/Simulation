@@ -1,7 +1,7 @@
 <?php 
     abstract class Creature extends Entity {
         protected $speed;
-        protected $hp;
+        public $hp;
         function __construct($model, Coordinates $coordinates, $speed, $hp) {
             parent::__construct($model, $coordinates);
             $this->speed = $speed;
