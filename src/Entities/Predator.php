@@ -29,18 +29,18 @@
             if ($canEat == true) { //Атака
                 $target = $map->getEntity($targetCords);
 
-                // Отнимаем у травоядного hp
                 if ($target->hp <= $this->damage) {
+                    
                     //Удалить травоядное
-                    $map->removeEntity($target->coordinates);
+                    $map->removeEntity($targetCords);
                     
                     //Удалить хищника с текущей координаты
                     $map->removeEntity($this->coordinates);
                     //Переместить хищника
                     $this->coordinates = $targetCords;
-                    $map->addEntity($this, $targetCords);
+                    $map->addEntity($this, $this->coordinates);
                 }
-                else {
+                else { // Отнимаем у травоядного hp
                     $target->hp -= $this->damage;
                 }
 

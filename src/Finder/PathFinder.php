@@ -34,17 +34,5 @@
             }
             return null;
         }
-
-
-
-
-
-
-        // public function calcDistance($start, $end) { //Нахождение чебышёвского расстояния
-        //     return max(abs($end->getCoordinates()[0] - $start[0]), abs($end->getCoordinates()[1] - $start[1]));
-        // }
-
-
-
     }
 ?>

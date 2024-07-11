@@ -34,6 +34,20 @@
             unset($this->entities[$coordinates->toString()]);
         }
 
+        public function isThereHerbivore() :bool {
+            foreach ($this->entities as $entity) {
+                if (get_class($entity) == "Herbivore") return true;
+            }
+            return false;
+        }
+
+        public function isThereGrass() :bool {
+            foreach ($this->entities as $entity) {
+                if (get_class($entity) == "Grass") return true;
+            }
+            return false;
+        }
+
         public function isPlaceEmpty($coordinates) {
             return !array_key_exists($coordinates->toString(), $this->entities);
         }
@@ -88,7 +102,7 @@
 
 
             //Добавление хищника
-            $this->addEntity(new Predator("🐺", new Coordinates(20,2), 10, 15, 5),new Coordinates(20,2));
+            $this->addEntity(new Predator("🐺", new Coordinates(20,2), 2, 15, 5),new Coordinates(20,2));
 
         }
     }

@@ -1,40 +1,48 @@
 <?php
     class Simulation {
-        public $map;
+        public Map $map;
         public $movesCounter;
-        public MapRender $mapRender = new MapRender();
+        // public MapRender $mapRender = new MapRender();
 
         public $initActions = [];
         public $turnActions = [];
 
+        public function __construct(Map $map) {
+            $this->map = $map;
+            $this->movesCounter = 0;
+        }
+
         public function nextTurn() {
-            //mapRender
-            $this->mapRender->mapRender($this->map);
-
-            foreach ($this->map->entities as $entity) {
-                $entity->makeMove();
+            foreach ($this->turnActions as $action) {
+                $action->doing($this->map);
             }
-
-            //mapRender
-            $this->mapRender->mapRender($this->map);
         }
 
         public function startSimulation() {
-            
+            foreach ($this->initActions as $action) {
+                $action->doing($this->map);
+            }
             while(true) {
-                //nextTurn()
-
-                //Счетчик ходов ++
-
-                //Проверка наличия травы или травоядных
-                    //Если они еще есть: продожить
-                    //Если нет: stopSimulation()
-                
+                if ($this->map->isThereGrass() && $this->map->isThereHerbivore()) {
+                    
+                    $this->nextTurn();
+                    $this->movesCounter++;
+                    $this->printMovesCounter();
+                    sleep(1);
+                }
+                else {
+                    break;  
+                }
            }
         }
 
-        public function stopSimulation() {
+        public function printMovesCounter() {
+            echo "\n";
+            echo "Ход: $this->movesCounter \n";
+        }
 
+        public function stopSimulation() {
+            
         }
     }
 ?>

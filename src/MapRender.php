@@ -1,6 +1,7 @@
 <?php
     class MapRender {
         public function mapRender(Map $map) {
+            
             for ($i = 0; $i < $map->sizeY; $i++) {
                 for ($j = 0; $j < $map->sizeX; $j++) {
                     if ($i == 0 && $j == 0) {
